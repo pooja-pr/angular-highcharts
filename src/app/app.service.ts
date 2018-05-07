@@ -25,6 +25,17 @@ export class AppService {
             });
     }
 
+    getBranchGraphData(input): Observable<ChartsModel[]> {
+        const vm = this;
+        return this.http.post('http://localhost:3000/dashboard/branch', input)
+            .map((res: Response) => {
+                return vm.extractData(res);
+            })
+            .catch((error: Response) => {
+                return vm.handleError(error);
+            });
+    }
+
     private extractResponse(res: Response) {
         const body = res.json();
         if (body.error) {

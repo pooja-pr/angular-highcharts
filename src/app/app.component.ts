@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   chart: Chart;
+  branchReport: Chart;
   constructor(private router: Router,
     private route: ActivatedRoute, private appService: AppService) { }
 
@@ -17,43 +18,13 @@ export class AppComponent {
     vm.appService.getGraphData({}).subscribe(response => {
       this.init(response);
     });
-  }
-
-  addPoint() {
-    if (this.chart) {
-      this.chart.addPoint(Math.floor(Math.random() * 10));
-    } else {
-      alert('init chart, first!');
-    }
-  }
-
-  addSerie() {
-    this.chart.addSerie({
-      name: 'Line ' + Math.floor(Math.random() * 10),
-      data: [
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10)
-      ]
+    vm.appService.getBranchGraphData({}).subscribe(response => {
+      this.BranchReportGraph(response);
     });
   }
 
-  removePoint() {
-    this.chart.removePoint(this.chart.ref.series[0].data.length - 1);
-  }
-
-  removeSerie() {
-    this.chart.removeSerie(this.chart.ref.series.length - 1);
-  }
-
   init(inp) {
-    let chart = new Chart({
+    const chart = new Chart({
       chart: {
         type: 'column',
         plotBackgroundColor: null,
@@ -70,12 +41,30 @@ export class AppComponent {
         data: inp
       }]
     });
-    chart.addPoint(4);
+
     this.chart = chart;
-    chart.addPoint(5);
-    setTimeout(() => {
-      chart.addPoint(6);
-    }, 2000);
+  }
+  BranchReportGraph(inp) {
+    console.log(inp);
+    const branchChart = new Chart({
+      chart: {
+        type: 'pie',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Reports'
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        data: inp
+      }]
+    });
+
+    this.branchReport = branchChart;
   }
 
 }
