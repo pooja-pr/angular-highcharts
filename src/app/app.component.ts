@@ -72,4 +72,34 @@ export class AppComponent {
     this.branchReport = branchChart;
   }
 
+  onSubmit() {
+    console.log('submitted');
+    const vm = this;
+    if (vm.branchInput.from) {
+      vm.branchInput.from = vm.branchInput.from['epoc'];
+    }
+    if (vm.branchInput.to) {
+      vm.branchInput.to = vm.branchInput.to['epoc'];
+    }
+    console.log(this.branchInput);
+    vm.appService.getBranchGraphData(vm.branchInput).subscribe(response => {
+      this.init(response);
+    });
+  }
+
+  onClick() {
+    console.log('submitted');
+    const vm = this;
+    if (vm.userInput.from) {
+      vm.userInput.from = vm.branchInput.from['epoc'];
+    }
+    if (vm.userInput.to) {
+      vm.userInput.to = vm.branchInput.to['epoc'];
+    }
+    console.log(this.userInput);
+    vm.appService.getGraphData(vm.userInput).subscribe(response => {
+      this.BranchReportGraph(response);
+    });
+  }
+
 }

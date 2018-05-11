@@ -13,6 +13,7 @@ function getGraphDataForBranch(req, res, next) {
         var db = client.db('ikf');
         var matchConditions = {};
         var and_clauses = [];
+        console.log('request..', req.body);
         if (req.body.enqAmount && (req.body.enqAmount).length > 0) {
             and_clauses.push({ enqAmount: { $in: req.body.enqAmount } });
         }
@@ -28,6 +29,7 @@ function getGraphDataForBranch(req, res, next) {
         if (and_clauses.length > 0) {
             matchConditions['$and'] = and_clauses;
         }
+        console.log('match condition', matchConditions)
         var cursor = db.collection('Cibil').aggregate([{
             $match: matchConditions
         }, {

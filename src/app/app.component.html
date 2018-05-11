@@ -1,45 +1,49 @@
 <div class="row">
-    <div class="col-md-2" style="height:500px">
+    <div class=" col-md-2" style="height:500px">
         <form #myForm="ngForm">
             <div class="form-group">
                 <label for="amount">Amount: </label>
-                <input type="text" class="form-control" id="amount" [(ngModel)]="branchInput.enqAmount" placeholder="Enter Enquiry Amount">
+                <input type="text" class="form-control" id="amount" name="amount" [(ngModel)]="branchInput.enqAmount" placeholder="Enter Enquiry Amount">
             </div>
             <div class="form-group">
                 <label for="purpose">Purpose: </label>
-                <input type="text" class="form-control" id="purpose" [(ngModel)]="branchInput.enqPurpose" placeholder="Enter Enquiry Purpose">
+                <input type="text" class="form-control" id="purpose" name="purpose" [(ngModel)]="branchInput.enqPurpose" placeholder="Enter Enquiry Purpose">
             </div>
             <div class="form-group">
                 <label for="mydate">Date Range: From: </label>
-                <my-date-picker id="mydate" name="mydate" [(ngModel)]="branchInput.from"></my-date-picker>
+                <my-date-picker id="fromdate" name="fromdate" [(ngModel)]="branchInput.from"></my-date-picker>
             </div>
             <div class="form-group">
                 <label for="mydate">Date Range: To: </label>
-                <my-date-picker id="mydate" name="mydate" [(ngModel)]="branchInput.to"></my-date-picker>
+                <my-date-picker id="todate" name="todate" [(ngModel)]="branchInput.to"></my-date-picker>
             </div>
+            <button type="submit" class="btn btn-default" (click)="onSubmit()">Submit</button>
         </form>
     </div>
     <div class="col-md-10" style="height:500px">
         <div [chart]="chart"></div>
     </div>
+</div>
+<div class="row">
     <div class="col-md-2" style="height:500px">
         <form #myForm="ngForm">
             <div class="form-group">
-                <label for="amount">Amount: </label>
-                <input type="text" class="form-control" id="amount" [(ngModel)]="userInput.enqAmount" placeholder="Enter Enquiry Amount">
+                <label for="amount1">Amount: </label>
+                <input type="text" class="form-control" id="amount1" name="amount" [(ngModel)]="userInput.enqAmount" placeholder="Enter Enquiry Amount">
             </div>
             <div class="form-group">
-                <label for="purpose">Purpose: </label>
-                <input type="text" class="form-control" id="purpose" [(ngModel)]="userInput.enqPurpose" placeholder="Enter Enquiry Purpose">
+                <label for="purpose1">Purpose: </label>
+                <input type="text" class="form-control" id="purpose1" name="purpose" [(ngModel)]="userInput.enqPurpose" placeholder="Enter Enquiry Purpose">
             </div>
             <div class="form-group">
-                <label for="mydate">Date Range: From: </label>
-                <my-date-picker id="mydate" name="mydate" [(ngModel)]="userInput.from"></my-date-picker>
+                <label for="fromdate1">Date Range: From: </label>
+                <my-date-picker id="fromdate1" name="fromdate1" [(ngModel)]="userInput.from"></my-date-picker>
             </div>
             <div class="form-group">
-                <label for="mydate">Date Range: To: </label>
-                <my-date-picker id="mydate" name="mydate" [(ngModel)]="userInput.to"></my-date-picker>
+                <label for="todate1">Date Range: To: </label>
+                <my-date-picker id="todate1" name="todate1" [(ngModel)]="userInput.to"></my-date-picker>
             </div>
+            <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
     <div class="col-md-10" style="height:500px">
