@@ -24,7 +24,7 @@ function getGraphDataForBranch(req, res, next) {
             and_clauses.push({ scoreType: req.body.scoreType });
         }
         if (req.body.from && req.body.to) {
-            and_clauses.push({ createdAt: { "$lte": req.body.from, "$gte": req.body.to } })
+            and_clauses.push({ createdAt: { "$lte": req.body.to, "$gte": req.body.from } })
         }
         if (and_clauses.length > 0) {
             matchConditions['$and'] = and_clauses;
@@ -58,16 +58,18 @@ function getGraphDataForEmpId(req, res, next) {
         var matchConditions = {};
         var and_clauses = [];
         if (req.body.enqAmount && (req.body.enqAmount).length > 0) {
-            and_clauses.push({ enqAmount: { $in: req.body.enqAmount } });
+            //and_clauses.push({ enqAmount: { $in: req.body.enqAmount } });
+            and_clauses.push({ enqAmount: req.body.enqAmount });
         }
         if (req.body.enqPurpose && (req.body.enqPurpose).length > 0) {
-            and_clauses.push({ enqPurpose: { $in: req.body.enqPurpose } });
+            //and_clauses.push({ enqPurpose: { $in: req.body.enqPurpose } });
+            and_clauses.push({ enqPurpose: req.body.enqPurpose });
         }
         if (req.body.scoreType && (req.body.scoreType).length > 0) {
             and_clauses.push({ scoreType: { $in: req.body.scoreType } });
         }
         if (req.body.from && req.body.to) {
-            and_clauses.push({ createdAt: { "$lte": req.body.from, "$gte": req.body.to } })
+            and_clauses.push({ createdAt: { "$lte": req.body.to, "$gte": req.body.from } })
         }
         if (and_clauses.length > 0) {
             matchConditions['$and'] = and_clauses;
