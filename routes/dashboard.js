@@ -6,7 +6,7 @@ var MongoClient = mongo.MongoClient;
 
 /* Get aggregated data. */
 router.post('/branch', getGraphDataForBranch);
-router.post('/user', getGraphDataForEmpId);
+router.post('/', getGraphDataForEmpId);
 
 function getGraphDataForBranch(req, res, next) {
     MongoClient.connect('mongodb://localhost:27017/', (err, client) => {

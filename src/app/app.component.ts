@@ -91,10 +91,10 @@ export class AppComponent {
     console.log('submitted');
     const vm = this;
     if (vm.userInput.from) {
-      vm.userInput.from = vm.branchInput.from['epoc'];
+      vm.userInput.from = vm.userInput.from['epoc'];
     }
     if (vm.userInput.to) {
-      vm.userInput.to = vm.branchInput.to['epoc'];
+      vm.userInput.to = vm.userInput.to['epoc'];
     }
     console.log(this.userInput);
     vm.appService.getGraphData(vm.userInput).subscribe(response => {

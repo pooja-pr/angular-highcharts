@@ -16,7 +16,7 @@ export class AppService {
     }
     getGraphData(input): Observable<ChartsModel[]> {
         const vm = this;
-        return this.http.post('http://localhost:3000/dashboard/user', input)
+        return this.http.post('http://localhost:3000/dashboard/', input)
             .map((res: Response) => {
                 return vm.extractData(res);
             })
