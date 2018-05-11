@@ -15,13 +15,13 @@ function getGraphDataForBranch(req, res, next) {
         var and_clauses = [];
         console.log('request..', req.body);
         if (req.body.enqAmount && (req.body.enqAmount).length > 0) {
-            and_clauses.push({ enqAmount: { $in: req.body.enqAmount } });
+            and_clauses.push({ enqAmount: req.body.enqAmount });
         }
         if (req.body.enqPurpose && (req.body.enqPurpose).length > 0) {
-            and_clauses.push({ enqPurpose: { $in: req.body.enqPurpose } });
+            and_clauses.push({ enqPurpose: req.body.enqPurpose });
         }
         if (req.body.scoreType && (req.body.scoreType).length > 0) {
-            and_clauses.push({ scoreType: { $in: req.body.scoreType } });
+            and_clauses.push({ scoreType: req.body.scoreType });
         }
         if (req.body.from && req.body.to) {
             and_clauses.push({ createdAt: { "$lte": req.body.from, "$gte": req.body.to } })
@@ -35,13 +35,20 @@ function getGraphDataForBranch(req, res, next) {
         }, {
             $group: { _id: '$customer.branch', count: { $sum: 1 } }
         }], { cursor: {} });
+
         cursor.toArray((err, data) => {
-            var arr = []
-            data.forEach(function (item) {
-                arr.push({ "name": item._id, "y": item.count });
-            });
-            res.json({ error: false, data: arr, message: "Success" });
+            var arr = [];
+            console.log(err);
+            if (data) {
+                data.forEach(function (item) {
+                    arr.push({ "name": item._id, "y": item.count });
+                });
+                res.json({ error: false, data: arr, message: "Success" });
+            } else {
+                res.json({ error: true, message: "No data found" })
+            }
         });
+
     });
 };
 
