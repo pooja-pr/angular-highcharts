@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppService } from './app.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ChartModel } from './input.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AppComponent {
   chart: Chart;
   branchReport: Chart;
+  branchInput: ChartModel;
+  userInput: ChartModel;
   constructor(private router: Router,
     private route: ActivatedRoute, private appService: AppService) { }
 
@@ -21,6 +24,8 @@ export class AppComponent {
     vm.appService.getBranchGraphData({}).subscribe(response => {
       this.BranchReportGraph(response);
     });
+    vm.branchInput = new ChartModel();
+    vm.userInput = new ChartModel();
   }
 
   init(inp) {

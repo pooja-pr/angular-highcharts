@@ -11,6 +11,8 @@ import { ChartsComponent } from './charts/charts.component';
 import { AppRouteModule } from '../router/app-route.module';
 import { ChartModule } from 'angular-highcharts';
 import exporting from 'highcharts/modules/exporting.src';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 
 
@@ -24,7 +26,8 @@ import exporting from 'highcharts/modules/exporting.src';
     FormsModule,
     HttpModule,
     ChartModule,
-    AppRouteModule
+    AppRouteModule,
+    MyDatePickerModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

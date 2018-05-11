@@ -1,4 +1,62 @@
-<div [chart]="chart"></div>
-<div [chart]="branchReport"></div>
+<div class="row">
+    <div class="col-md-2" style="height:500px">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label for="amount">Amount: </label>
+                <input type="text" class="form-control" id="amount" [(ngModel)]="branchInput.enqAmount" placeholder="Enter Enquiry Amount">
+            </div>
+            <div class="form-group">
+                <label for="purpose">Purpose: </label>
+                <input type="text" class="form-control" id="purpose" [(ngModel)]="branchInput.enqPurpose" placeholder="Enter Enquiry Purpose">
+            </div>
+            <div class="form-group">
+                <label for="mydate">Date Range: From: </label>
+                <my-date-picker id="mydate" name="mydate" [(ngModel)]="branchInput.from"></my-date-picker>
+            </div>
+            <div class="form-group">
+                <label for="mydate">Date Range: To: </label>
+                <my-date-picker id="mydate" name="mydate" [(ngModel)]="branchInput.to"></my-date-picker>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-10" style="height:500px">
+        <div [chart]="chart"></div>
+    </div>
+    <div class="col-md-2" style="height:500px">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label for="amount">Amount: </label>
+                <input type="text" class="form-control" id="amount" [(ngModel)]="userInput.enqAmount" placeholder="Enter Enquiry Amount">
+            </div>
+            <div class="form-group">
+                <label for="purpose">Purpose: </label>
+                <input type="text" class="form-control" id="purpose" [(ngModel)]="userInput.enqPurpose" placeholder="Enter Enquiry Purpose">
+            </div>
+            <div class="form-group">
+                <label for="mydate">Date Range: From: </label>
+                <my-date-picker id="mydate" name="mydate" [(ngModel)]="userInput.from"></my-date-picker>
+            </div>
+            <div class="form-group">
+                <label for="mydate">Date Range: To: </label>
+                <my-date-picker id="mydate" name="mydate" [(ngModel)]="userInput.to"></my-date-picker>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-10" style="height:500px">
+        <div [chart]="branchReport"></div>
+    </div>
+</div>
 
-
+<!-- <div class="row" style="height:50%;background-color:red;">
+    <div class="col-md-12">
+        <p>A</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <p>B</p>
+    </div>
+    <div class="col-lg-6">
+        <p>C</p>
+    </div>
+</div> -->
